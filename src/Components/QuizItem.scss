@@ -1,0 +1,11 @@
+.hover-disable {
+  cursor: default;
+}
+.hover-disable {
+  &:hover,
+  &:active {
+    color: var(--bs-btn-color) !important;
+    background-color: var(--bs-btn-bg) !important;
+    border-color: var(--bs-btn-border-color) !important;
+  }
+}

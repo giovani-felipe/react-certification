@@ -1,18 +1,14 @@
 import { useContext } from 'react';
 import { Link } from 'react-router';
 import { QuizContext } from '../context/QuizProvider';
-import QuizItem from './QuizItem';
-import Score from './Score';
 import { useAnswerRightAnswers } from '../hooks/useAnswer';
-import { AnswerContext } from '../context/AnswerProvider';
+import QuizItem from './Quiz/QuizItem';
+import Score from './Score';
 
 function AnswerList() {
   const rightAnswer = useAnswerRightAnswers();
-  const { quiz, setQuiz } = useContext(QuizContext);
-  const { reset } = useContext(AnswerContext);
-
-  console.log('AnswerList', rightAnswer);
-
+  const { quiz} = useContext(QuizContext);  
+    
   return (
     <>
       {quiz.map((question) => (
@@ -23,10 +19,6 @@ function AnswerList() {
         <Link
           className="btn btn-secondary"
           to="/"
-          onClick={() => {
-            setQuiz([]);
-            reset();
-          }}
         >
           Create a new Quiz
         </Link>

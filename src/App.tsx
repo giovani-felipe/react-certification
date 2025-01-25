@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
-import QuizProvider from './context/QuizProvider';
 import AnswerProvider from './context/AnswerProvider';
+import QuizProvider from './context/QuizProvider';
 
 function App() {
   return (

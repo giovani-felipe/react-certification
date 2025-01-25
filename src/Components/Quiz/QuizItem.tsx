@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
-import { useAnswerById, useAnswerSet } from '../hooks/useAnswer';
-import { Quiz } from '../types/quiz';
+import { useAnswerById, useAnswerSet } from '../../hooks/useAnswer';
+import { Quiz } from '../../types/quiz';
 
 import './QuizItem.scss';
 
@@ -15,8 +15,7 @@ const Item = memo(function Item({
   checkAnswer?: boolean;
   currentAnswer?: string;
 }) {
-  console.log('Item', question);
-
+  
   return (
     <>
       <p
@@ -30,8 +29,7 @@ const Item = memo(function Item({
               <span
                 key={index}
                 className={`btn me-2 mt-1 ${
-                  currentAnswer === question.correctAnswer &&
-                  currentAnswer === answer
+                  question.correctAnswer === answer
                     ? 'btn-success'
                     : currentAnswer === answer
                     ? 'btn-danger'
@@ -73,8 +71,6 @@ const QuizItem = memo(function QuizItem({
   const setAnswer = useCallback((answer: string) => {
     handleAnswer(question.id, answer);
   }, []);
-
-  console.log('QuizItem', question);
 
   return (
     <Item

@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router';
+import { Route, Routes } from 'react-router';
 import App from './App';
-import Quiz from './Pages/Quiz';
 import Answer from './Pages/Answer';
+import Quiz from './Pages/Quiz';
 
 function Routers() {
   return (

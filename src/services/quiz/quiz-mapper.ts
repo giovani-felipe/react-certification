@@ -1,6 +1,10 @@
 import { Quiz, QuizDifficulty } from '../../types/quiz';
 import { QuizDifficultyDTO, QuizResponseDTO } from './quiz-dto';
 
+function getRandom(max:number){
+  return Math.floor(Math.random() * max)
+}
+
 export class QuizMapper {
   static toModel(dto: QuizResponseDTO): Array<Quiz> {
     return dto.results.map((quiz, index) => ({
@@ -8,7 +12,9 @@ export class QuizMapper {
       category: quiz.category,
       correctAnswer: quiz.correct_answer,
       answers: [...quiz.incorrect_answers, quiz.correct_answer]
-        .sort()
+        .sort((a,b)=> {
+          return getRandom(a.length)- getRandom(b.length);
+        })
         .reverse(),
       question: quiz.question,
       difficulty: QuizDifficultyMapper.toModel(quiz.difficulty),

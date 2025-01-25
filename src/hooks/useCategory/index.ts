@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Category } from '../../types/category';
 import api from '../../services/api';
-import { CategoryMapper } from './category-mapper';
+import { Category } from '../../types/category';
 import { CategoryDto } from './category-dto';
+import { CategoryMapper } from './category-mapper';
 
 function useCategory() {
   const [categories, setCategories] = useState<Array<Category>>();

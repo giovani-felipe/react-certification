@@ -1,9 +1,9 @@
-import { PropsWithChildren, createContext, useState } from 'react';
+import { Dispatch, PropsWithChildren, SetStateAction, createContext, useState } from 'react';
 import { Quiz } from '../types/quiz';
 
 type QuizContextProps = {
   quiz: Array<Quiz>;
-  setQuiz: (quiz: Array<Quiz>) => void;
+  setQuiz: Dispatch<SetStateAction<Array<Quiz>>>;
 };
 
 export const QuizContext = createContext<QuizContextProps>(

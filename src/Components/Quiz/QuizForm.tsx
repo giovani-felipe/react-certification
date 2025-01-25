@@ -1,16 +1,17 @@
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
-import { QuizDifficulty } from '../types/quiz';
-import { Category } from '../types/category';
-import useCategories from '../hooks/useCategory';
-
-import { QuizContext } from '../context/QuizProvider';
-import getQuiz from '../services/quiz/quiz-service';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
+import { AnswerContext } from '../../context/AnswerProvider';
+import { QuizContext } from '../../context/QuizProvider';
+import useCategories from '../../hooks/useCategory';
+import getQuiz from '../../services/quiz/quiz-service';
+import { Category } from '../../types/category';
+import { QuizDifficulty } from '../../types/quiz';
 
 function QuizForm() {
   const [category, setCategory] = useState<Category>();
   const [difficulty, setDifficulty] = useState<QuizDifficulty | undefined>();
 
-  const { setQuiz } = useContext(QuizContext);
+  const { setQuiz } = useContext(QuizContext);  
+  const {reset} = useContext(AnswerContext);
 
   const categories = useCategories();
 
@@ -25,18 +26,22 @@ function QuizForm() {
     setDifficulty(event.target.value as QuizDifficulty);
   };
 
-  const handleSubimit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (category && difficulty) {
-      const data = await getQuiz(category?.id, difficulty);
-
-      setQuiz(data);
+      const data = await getQuiz(category?.id, difficulty);      
+      setQuiz(data);            
     }
   };
 
+  useEffect(()=>{    
+    reset();
+    setQuiz([]);
+  },[])
+  
   return (
     <>
-      <form onSubmit={handleSubimit}>
+      <form onSubmit={handleSubmit}>
         <div className="input-group">
           <select
             name="category"

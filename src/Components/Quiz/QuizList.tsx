@@ -1,14 +1,12 @@
-import QuizItem from './QuizItem';
 import { useContext } from 'react';
-import { QuizContext } from '../context/QuizProvider';
 import { Link } from 'react-router';
-import { useAnswerTotal } from '../hooks/useAnswer';
+import { QuizContext } from '../../context/QuizProvider';
+import { useAnswerTotal } from '../../hooks/useAnswer';
+import QuizItem from './QuizItem';
 
 function QuizList() {
   const { quiz } = useContext(QuizContext);
   const totalAnswer = useAnswerTotal();
-
-  console.log('QuizList', quiz);
 
   return (
     <>

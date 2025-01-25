@@ -1,5 +1,6 @@
-import { PropsWithChildren, createContext, useCallback, useState } from 'react';
+import { PropsWithChildren, createContext, useState } from 'react';
 import { Answer } from '../types/answer';
+
 
 type AnswerContextProps = {
   answers: Map<number, string>;
@@ -12,17 +13,17 @@ export const AnswerContext = createContext<AnswerContextProps>(
 );
 
 function AnswerProvider({ children }: PropsWithChildren) {
-  const [answers, setAnswers] = useState(new Map());
+  const [answers, setAnswers] = useState(new Map());  
 
-  const handleAnswer = useCallback((answer: Answer) => {
+  const handleAnswer = (answer: Answer) => {
     answers.set(answer.id, answer.answer);
     const newAnswers = new Map(answers);
     setAnswers(newAnswers);
-  }, []);
+  };
 
-  const reset = useCallback(() => {
-    setAnswers(new Map());
-  }, []);
+  const reset = () => {
+    setAnswers(new Map());    
+  };
 
   return (
     <AnswerContext.Provider value={{ answers, handleAnswer, reset }}>
